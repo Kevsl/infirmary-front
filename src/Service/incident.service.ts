@@ -12,6 +12,19 @@ export async function getAllIncidents() {
 
     return axios.get(`${process.env.NEXT_PUBLIC_API_URL}incident`, axiosConfig)
 }
+export async function getIncidentsByStaff(id: string) {
+    let axiosConfig = {
+        headers: {
+            'content-type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('sub')}`,
+        },
+    }
+
+    return axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}incident/by-victim/${id}`,
+        axiosConfig
+    )
+}
 
 export async function reportIncident(incident: incidentSubmit) {
     let axiosConfig = {
