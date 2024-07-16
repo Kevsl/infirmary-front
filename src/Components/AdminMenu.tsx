@@ -11,7 +11,12 @@ export const AdminMenu = () => {
 
     return (
         <div className="bg-gray-100 text-black static h-screen w-1/3">
-            <img src="/banniere-mithieux.svg" alt="Bannière Mithieux" />
+            <img
+                src="/banniere-mithieux.svg"
+                alt="Bannière Mithieux"
+                className="cursor-pointer"
+                onClick={() => push('/admin/global-search')}
+            />
             <ul className="h-screen pl-1">
                 <li
                     className="h-12 flex items-center my-2 hover:bg-blue-950 hover:text-white p-2 cursor-pointer"
@@ -54,13 +59,6 @@ export const AdminMenu = () => {
                 >
                     <FaUserInjured size={23} />
                     <span className="ml-2"> Incidents par personne</span>
-                </li>
-                <li
-                    className="h-12 flex items-center my-2 hover:bg-blue-950 hover:text-white p-2 cursor-pointer"
-                    onClick={() => push('/admin')}
-                >
-                    <IoMdTimer size={23} />
-                    <span className="ml-2"> Les derniers incidents</span>
                 </li>
             </ul>
         </div>

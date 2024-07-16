@@ -17,8 +17,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="fr">
-            {/* <Toaster position="top-right" reverseOrder={false} /> */}
-            <body className={inter.className}>{children}</body>
+            <body className={inter.className}>
+                <Toaster />
+
+                {children}
+            </body>
         </html>
     )
 }

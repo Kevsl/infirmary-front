@@ -12,6 +12,7 @@ export async function getAllIncidents() {
 
     return axios.get(`${process.env.NEXT_PUBLIC_API_URL}incident`, axiosConfig)
 }
+
 export async function getIncidentsByStaff(id: string) {
     let axiosConfig = {
         headers: {
@@ -130,6 +131,19 @@ export async function reportIncident(incident: incidentSubmit) {
             employee_arrival_time: incident.employee_arrival_time || null,
             notify_manager: incident.notify_manager || false,
         },
+        axiosConfig
+    )
+}
+export async function searchIncident(query: string) {
+    let axiosConfig = {
+        headers: {
+            'content-type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('sub')}`,
+        },
+    }
+
+    return axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}incident/search/${query}`,
         axiosConfig
     )
 }

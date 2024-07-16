@@ -6,6 +6,6 @@ export function getTimeOfDay() {
     } else if (hours >= 12 && hours < 20) {
         return 'Après-midi'
     } else {
-        return 'Soir'
+        return 'Nuit'
     }
 }
