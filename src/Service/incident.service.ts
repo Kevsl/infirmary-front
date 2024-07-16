@@ -26,6 +26,7 @@ export async function getIncidentsByStaff(id: string) {
         axiosConfig
     )
 }
+
 export async function getIncidentsByInjury(id: string) {
     let axiosConfig = {
         headers: {
@@ -39,6 +40,32 @@ export async function getIncidentsByInjury(id: string) {
 
         axiosConfig
     )
+}
+
+export async function getIncidentsByMoment(moment: string) {
+    let axiosConfig = {
+        headers: {
+            'content-type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('sub')}`,
+        },
+    }
+
+    return axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}incident/by-moment/${moment}`,
+
+        axiosConfig
+    )
+}
+
+export async function getAllMoments() {
+    let axiosConfig = {
+        headers: {
+            'content-type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('sub')}`,
+        },
+    }
+
+    return axios.get(`${process.env.NEXT_PUBLIC_API_URL}moments`, axiosConfig)
 }
 
 export async function getIncidentsByLocation(id: string) {
