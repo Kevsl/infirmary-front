@@ -17,7 +17,6 @@ import {
     Transport,
     Victim,
 } from '@/Utils/types'
-import { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -50,14 +49,10 @@ const page = () => {
     const onSubmit: SubmitHandler<incidentSubmit> = (data) => {
         reportIncident(data)
             .then((res) => {
-                toast.success('Incident reporté.')
+                toast.success('Incident enregistré')
                 push('/')
             })
-            .catch(() =>
-                toast.error(
-                    "Une erreur est survenue, contactez l'administrateur du site"
-                )
-            )
+            .catch(() => toast.error('Une erreur est survenue'))
     }
 
     const fetchData = async () => {
