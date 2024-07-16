@@ -39,6 +39,24 @@ export async function getIncidentsByLocation(id: string) {
     )
 }
 
+export async function getIncidentsDate(year: number, month: number) {
+    let axiosConfig = {
+        headers: {
+            'content-type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('sub')}`,
+        },
+        params: {
+            month: month,
+            year: year,
+        },
+    }
+
+    return axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}incident/by-month`,
+        axiosConfig
+    )
+}
+
 export async function reportIncident(incident: incidentSubmit) {
     let axiosConfig = {
         headers: {
