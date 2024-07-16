@@ -111,9 +111,9 @@ const page = () => {
     }, [victimSignature])
 
     return (
-        <main className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-white w-screen">
+        <main className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-white w-screen">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+                <div className="sm:mx-auto sm:w-full sm:max-w-xl">
                     <img
                         alt="Mithieux metal protect"
                         src="banniere-mithieux.svg"
@@ -124,7 +124,7 @@ const page = () => {
                     </h2>
                 </div>
 
-                <div className="my-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                <div className="my-10 sm:mx-auto sm:w-full sm:max-w-xl border-2 border-gray-100 p-2 rounded-md">
                     <InputContainer
                         title="Salarié concerné(e)"
                         htmlFor="concernedStaff"
