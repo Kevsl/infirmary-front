@@ -42,7 +42,6 @@ const page = () => {
         register,
         handleSubmit,
         setValue,
-        watch,
         formState: { errors },
     } = useForm<incidentSubmit>({
         resolver: createIncidentResolver,
