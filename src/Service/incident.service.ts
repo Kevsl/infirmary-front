@@ -25,6 +25,21 @@ export async function getIncidentsByStaff(id: string) {
         axiosConfig
     )
 }
+export async function getIncidentsByInjury(id: string) {
+    let axiosConfig = {
+        headers: {
+            'content-type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('sub')}`,
+        },
+    }
+
+    return axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}incident/by-injury/${id}`,
+
+        axiosConfig
+    )
+}
+
 export async function getIncidentsByLocation(id: string) {
     let axiosConfig = {
         headers: {
