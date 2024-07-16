@@ -112,6 +112,7 @@ export interface incidentSubmit {
     employee_departure_time?: string
     employee_arrival_time?: string
     notify_manager: boolean
+    willVictimeGoHome: boolean
     created_at: string
     updated_at: string
 }

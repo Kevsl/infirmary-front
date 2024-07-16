@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const FormError = () => {
+export const FormError = ({ message }: { message: string }) => {
     return (
-        <p className="text-sm text-red-600 text-center my-3">
-            Ce champ est requis!
+        <p className="text-sm text-red-600 text-center my-3 italic">
+            *{message}
         </p>
     )
 }

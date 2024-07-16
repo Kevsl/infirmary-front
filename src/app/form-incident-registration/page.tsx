@@ -3,6 +3,7 @@ import { FormError } from '@/Components/formError'
 import { InputContainer } from '@/Components/InputContainer'
 import SignCanvas from '@/Components/SignCanvas'
 import { getAllCares } from '@/Service/care.service'
+import { reportIncident } from '@/Service/incident.service'
 import { getAllInjuries } from '@/Service/injury.service'
 import { getAllLocations } from '@/Service/location.service'
 import { getAllTransports } from '@/Service/transport.service'
@@ -16,8 +17,11 @@ import {
     Transport,
     Victim,
 } from '@/Utils/types'
+import { AxiosError } from 'axios'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import SignaturePad from 'react-signature-pad-wrapper'
 
 const page = () => {
@@ -33,7 +37,7 @@ const page = () => {
     const [willVictimGoHome, setWillVictimGoHome] = useState(false)
     const [victimSignature, setVictimSignature] = useState<string | null>(null)
     const victimSignaturePadRef = useRef<SignaturePad>(null)
-
+    const { push } = useRouter()
     const {
         register,
         handleSubmit,
@@ -43,11 +47,20 @@ const page = () => {
     } = useForm<incidentSubmit>({
         resolver: createIncidentResolver,
     })
+
     const onSubmit: SubmitHandler<incidentSubmit> = (data) => {
-        console.log(data)
+        reportIncident(data)
+            .then((res) => {
+                toast.success('Incident reporté.')
+                push('/')
+            })
+            .catch(() =>
+                toast.error(
+                    "Une erreur est survenue, contactez l'administrateur du site"
+                )
+            )
     }
 
-    // Todo :  Remplacer les states par register, pour mettre une validation sur le départ salarié
     const fetchData = async () => {
         try {
             const [
@@ -79,13 +92,6 @@ const page = () => {
             setCaresList(caresList)
             setSstStaff(sstStaff)
             setTransportsList(transportsList)
-
-            // staffList && setValue('victim_id', staffList[0]?.id)
-            // injuriesList && setValue('injury_id', injuriesList[0]?.id)
-            // locationsList && setValue('location_id', locationsList[0]?.id)
-            // caresList && setValue('care_id', caresList[0]?.id)
-            // sstStaff && setValue('sst_id', sstStaff[0]?.id)
-            // transportsList && setValue('transport_id', transportsList[0]?.id)
         } catch (error) {
             console.error('Failed to fetch data', error)
         }
@@ -132,13 +138,15 @@ const page = () => {
                             {staffList &&
                                 staffList.map((staff) => {
                                     return (
-                                        <option key={staff.id}>
+                                        <option key={staff.id} value={staff.id}>
                                             {staff.name}
                                         </option>
                                     )
                                 })}
                         </select>
-                        {errors.victim_id && <FormError />}
+                        {errors.victim_id?.message && (
+                            <FormError message={errors.victim_id.message} />
+                        )}{' '}
                     </InputContainer>
                     <InputContainer
                         title="Type de blessure"
@@ -152,13 +160,18 @@ const page = () => {
                             {injuriesList &&
                                 injuriesList.map((injury) => {
                                     return (
-                                        <option key={injury.id}>
+                                        <option
+                                            key={injury.id}
+                                            value={injury.id}
+                                        >
                                             {injury.description}
                                         </option>
                                     )
                                 })}
                         </select>
-                        {errors.injury_id && <FormError />}
+                        {errors.injury_id?.message && (
+                            <FormError message={errors.injury_id.message} />
+                        )}
                     </InputContainer>
                     <InputContainer
                         title="Localisation de l'incident"
@@ -172,13 +185,18 @@ const page = () => {
                             {locationsList &&
                                 locationsList.map((location) => {
                                     return (
-                                        <option key={location.id}>
+                                        <option
+                                            key={location.id}
+                                            value={location.id}
+                                        >
                                             {location.name}
                                         </option>
                                     )
                                 })}
-                            {errors.location_id && <FormError />}
                         </select>
+                        {errors.location_id?.message && (
+                            <FormError message={errors.location_id.message} />
+                        )}
                     </InputContainer>
                     <InputContainer
                         title="Description de l'incident"
@@ -194,7 +212,11 @@ const page = () => {
                                 maxLength: 150,
                             })}
                         />
-                        {errors.injury_description && <FormError />}
+                        {errors.injury_description?.message && (
+                            <FormError
+                                message={errors.injury_description.message}
+                            />
+                        )}
                     </InputContainer>
                     <InputContainer
                         title="Que faisait le salarié?"
@@ -210,7 +232,11 @@ const page = () => {
                                 maxLength: 150,
                             })}
                         />
-                        {errors.injury_situation && <FormError />}
+                        {errors.injury_situation?.message && (
+                            <FormError
+                                message={errors.injury_situation.message}
+                            />
+                        )}
                     </InputContainer>
                     <InputContainer
                         title="Soin apporté au salarié"
@@ -224,13 +250,15 @@ const page = () => {
                             {caresList &&
                                 caresList.map((care) => {
                                     return (
-                                        <option key={care.id}>
+                                        <option key={care.id} value={care.id}>
                                             {care.treatment}
                                         </option>
                                     )
                                 })}
                         </select>
-                        {errors.care_id && <FormError />}
+                        {errors.care_id?.message && (
+                            <FormError message={errors.care_id.message} />
+                        )}
                     </InputContainer>
                     <InputContainer title="Sst" htmlFor="sst">
                         <select
@@ -242,11 +270,15 @@ const page = () => {
                             {sstStaff &&
                                 sstStaff.map((sst) => {
                                     return (
-                                        <option key={sst.id}>{sst.name}</option>
+                                        <option key={sst.id} value={sst.id}>
+                                            {sst.name}
+                                        </option>
                                     )
                                 })}
                         </select>
-                        {errors.sst_id && <FormError />}
+                        {errors.sst_id?.message && (
+                            <FormError message={errors.sst_id.message} />
+                        )}
                     </InputContainer>
                     <div className="my-3 flex items-center">
                         <label
@@ -275,7 +307,11 @@ const page = () => {
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                                     {...register('samu_report')}
                                 />
-                                {errors.samu_report && <FormError />}
+                                {errors.samu_report?.message && (
+                                    <FormError
+                                        message={errors.samu_report.message}
+                                    />
+                                )}
                             </InputContainer>
                             <InputContainer
                                 title="Heure de départ de la victime"
@@ -286,7 +322,13 @@ const page = () => {
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                                     {...register('samu_departure_time')}
                                 />
-                                {errors.samu_departure_time && <FormError />}
+                                {errors.samu_departure_time?.message && (
+                                    <FormError
+                                        message={
+                                            errors.samu_departure_time.message
+                                        }
+                                    />
+                                )}
                             </InputContainer>
                             <InputContainer
                                 title="Destination"
@@ -297,7 +339,13 @@ const page = () => {
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                                     {...register('samu_destination')}
                                 />
-                                {errors.samu_destination && <FormError />}
+                                {errors.samu_destination?.message && (
+                                    <FormError
+                                        message={
+                                            errors.samu_destination.message
+                                        }
+                                    />
+                                )}
                             </InputContainer>
                         </div>
                     )}
@@ -306,7 +354,9 @@ const page = () => {
                             setSignature={setSignature}
                             signaturePadRef={signaturePadRef}
                         />
-                        {errors.sst_signature && <FormError />}
+                        {errors.sst_signature?.message && (
+                            <FormError message={errors.sst_signature.message} />
+                        )}
                     </InputContainer>
 
                     <div className="my-3 flex items-center">
@@ -323,6 +373,7 @@ const page = () => {
                                 onClick={() =>
                                     setWillVictimGoHome((prev) => !prev)
                                 }
+                                {...register('willVictimeGoHome')}
                             />
                         </div>
                     </div>
@@ -345,13 +396,20 @@ const page = () => {
                                     {transportsList &&
                                         transportsList.map((transport) => {
                                             return (
-                                                <option key={transport.id}>
+                                                <option
+                                                    key={transport.id}
+                                                    value={transport.id}
+                                                >
                                                     {transport.name}
                                                 </option>
                                             )
                                         })}
                                 </select>
-                                {errors.transport_id && <FormError />}
+                                {errors.transport_id?.message && (
+                                    <FormError
+                                        message={errors.transport_id.message}
+                                    />
+                                )}
                             </InputContainer>
                             <InputContainer
                                 title="Heure de départ"
@@ -360,11 +418,16 @@ const page = () => {
                                 <input
                                     type="time"
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
-                                    {...(register('employee_departure_time'),
-                                    {
-                                        required: willVictimGoHome,
-                                    })}
+                                    {...register('employee_departure_time')}
                                 />
+                                {errors.employee_departure_time?.message && (
+                                    <FormError
+                                        message={
+                                            errors.employee_departure_time
+                                                .message
+                                        }
+                                    />
+                                )}
                             </InputContainer>
                             <InputContainer
                                 title="Heure d'arrivée"
@@ -373,13 +436,14 @@ const page = () => {
                                 <input
                                     type="time"
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
-                                    {...(register('employee_arrival_time'),
-                                    {
-                                        required: willVictimGoHome,
-                                    })}
+                                    {...register('employee_arrival_time')}
                                 />
-                                {errors.employee_departure_time && (
-                                    <FormError />
+                                {errors.employee_arrival_time?.message && (
+                                    <FormError
+                                        message={
+                                            errors.employee_arrival_time.message
+                                        }
+                                    />
                                 )}
                             </InputContainer>
                             <InputContainer
@@ -390,6 +454,13 @@ const page = () => {
                                     setSignature={setVictimSignature}
                                     signaturePadRef={victimSignaturePadRef}
                                 />
+                                {errors.employee_discharge?.message && (
+                                    <FormError
+                                        message={
+                                            errors.employee_discharge.message
+                                        }
+                                    />
+                                )}
                             </InputContainer>
                         </div>
                     )}

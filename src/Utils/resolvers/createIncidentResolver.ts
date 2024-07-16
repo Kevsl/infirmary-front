@@ -9,49 +9,49 @@ export const createIncidentResolver: Resolver<incidentSubmit> = async (
     if (!values.victim_id) {
         errors.victim_id = {
             type: 'required',
-            message: 'Victim ID is required.',
+            message: 'Qui est la victime ?',
         }
     }
     if (!values.injury_id) {
         errors.injury_id = {
             type: 'required',
-            message: 'Injury ID is required.',
+            message: 'Type de blessure requise',
         }
     }
     if (!values.injury_description) {
         errors.injury_description = {
             type: 'required',
-            message: 'Injury description is required.',
+            message: "Que s'est il passé ?",
         }
     }
     if (!values.sst_id) {
         errors.sst_id = {
             type: 'required',
-            message: 'SST ID is required.',
+            message: 'Qui est le sst ?',
+        }
+    }
+    if (!values.sst_signature) {
+        errors.sst_signature = {
+            type: 'required',
+            message: 'La signature du sst est obligatoire.',
         }
     }
     if (!values.injury_situation) {
         errors.injury_situation = {
             type: 'required',
-            message: 'Injury situation is required.',
+            message: 'Que faisait le salarié?',
         }
     }
     if (!values.location_id) {
         errors.location_id = {
             type: 'required',
-            message: 'Location ID is required.',
+            message: "Ou l'accident s'est il produit?",
         }
     }
     if (!values.care_id) {
         errors.care_id = {
             type: 'required',
-            message: 'Care ID is required.',
-        }
-    }
-    if (typeof values.samu !== 'boolean') {
-        errors.samu = {
-            type: 'required',
-            message: 'SAMU field is required.',
+            message: 'Quel type de soins ont été apportés ?',
         }
     }
 
@@ -59,35 +59,42 @@ export const createIncidentResolver: Resolver<incidentSubmit> = async (
         if (!values.samu_report) {
             errors.samu_report = {
                 type: 'required',
-                message: 'SAMU field is required.',
+                message: 'Quelle est la décision du Samu?',
             }
         }
 
         if (!values.samu_departure_time) {
             errors.samu_departure_time = {
                 type: 'required',
-                message: 'SAMU field is required.',
+                message: 'Heure de départ du Samu ?',
             }
         }
-        if (!values.samu_departure_time) {
-            errors.samu_departure_time = {
+        if (!values.samu_destination) {
+            errors.samu_destination = {
                 type: 'required',
-                message: 'SAMU field is required.',
+                message: 'Destination du samu ?',
             }
         }
     }
 
-    if (!values.sst_signature) {
-        errors.sst_signature = {
-            type: 'required',
-            message: 'SST signature is required.',
+    if (values.willVictimeGoHome) {
+        if (!values.employee_departure_time) {
+            errors.employee_departure_time = {
+                type: 'required',
+                message: "L'heure du départ du salarié est requise",
+            }
         }
-    }
-
-    if (typeof values.notify_manager !== 'boolean') {
-        errors.notify_manager = {
-            type: 'required',
-            message: 'Notify manager field is required.',
+        if (!values.employee_discharge) {
+            errors.employee_discharge = {
+                type: 'required',
+                message: 'La signature du salarié est requise',
+            }
+        }
+        if (!values.transport_id) {
+            errors.transport_id = {
+                type: 'required',
+                message: "Comment le salarié rentrera t'il chez lui",
+            }
         }
     }
 
