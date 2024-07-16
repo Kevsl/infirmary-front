@@ -35,6 +35,39 @@ export async function getIncidentsByInjury(id: string) {
 
     return axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}incident/by-injury/${id}`,
+
+        axiosConfig
+    )
+}
+
+export async function getIncidentsByLocation(id: string) {
+    let axiosConfig = {
+        headers: {
+            'content-type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('sub')}`,
+        },
+    }
+
+    return axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}incident/by-location/${id}`,
+        axiosConfig
+    )
+}
+
+export async function getIncidentsDate(year: number, month: number) {
+    let axiosConfig = {
+        headers: {
+            'content-type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('sub')}`,
+        },
+        params: {
+            month: month,
+            year: year,
+        },
+    }
+
+    return axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}incident/by-month`,
         axiosConfig
     )
 }
