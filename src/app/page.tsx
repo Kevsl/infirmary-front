@@ -5,10 +5,12 @@ import { Incident } from '@/Utils/types'
 import { GridColDef, GridRenderCellParams, GridToolbar } from '@mui/x-data-grid'
 import { useEffect, useState } from 'react'
 import BasicModal from '@/Components/Seemoremodal'
+import { FaPlusCircle } from 'react-icons/fa'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
     const [incidentsList, setIncidentsList] = useState<Incident[]>([])
-
+    const { push } = useRouter()
     useEffect(() => {
         getAllIncidents().then((res) => {
             setIncidentsList(res.data.incidents)
@@ -19,7 +21,7 @@ export default function Home() {
         {
             field: 'incident_date',
             headerName: 'Date',
-            width: 125,
+            flex: 1,
             renderCell: (params) => {
                 return (
                     <p>
@@ -33,7 +35,7 @@ export default function Home() {
         {
             field: 'staff',
             headerName: 'Salarié',
-            width: 125,
+            flex: 1,
             renderCell: (params) => {
                 return <p>{params.row.victim.name}</p>
             },
@@ -41,7 +43,7 @@ export default function Home() {
         {
             field: 'injury',
             headerName: 'Blessure',
-            width: 125,
+            flex: 1,
             renderCell: (params) => {
                 return <p>{params.row.injury.description}</p>
             },
@@ -49,7 +51,7 @@ export default function Home() {
         {
             field: 'location_id',
             headerName: 'Secteur',
-            width: 125,
+            flex: 1,
             renderCell: (params) => {
                 return <p>{params.row.location.name}</p>
             },
@@ -57,7 +59,7 @@ export default function Home() {
         {
             field: 'sst_name',
             headerName: 'SST',
-            width: 125,
+            flex: 1,
             renderCell: (params) => {
                 return <p>{params.row.sst.name}</p>
             },
@@ -65,7 +67,7 @@ export default function Home() {
         {
             field: 'sst_signature',
             headerName: 'Signature SST',
-            width: 150,
+            flex: 1.2,
             renderCell: (params) => {
                 return (
                     <img
@@ -85,6 +87,15 @@ export default function Home() {
     ]
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-12 bg-white text-black">
+            <h1 className="text-3xl font-bold">Registre infirmerie</h1>
+            <button
+                onClick={() => push('/form-incident-registration')}
+                className=" flex items-center justify-center  py-2 px-4 border-blue-900 border-2 text-blue-900  rounded-md  my-8 mx-auto w-64"
+            >
+                <FaPlusCircle color="#1e3a8a" />
+                <span className="ml-2"> Reporter un incident</span>
+            </button>
+
             {incidentsList && (
                 <Datagrid rows={incidentsList} columns={columns} />
             )}

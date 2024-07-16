@@ -18,8 +18,7 @@ export default function Datagrid({
         <div
             style={{
                 height: '80vh',
-                width: '90%',
-                marginLeft: '5%',
+                width: '100%',
                 color: 'black',
             }}
             className="text-black"
