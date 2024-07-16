@@ -1,3 +1,6 @@
+import { RefObject } from 'react'
+import SignaturePad from 'react-signature-pad-wrapper'
+
 export type Injury = {
     id: string
     description: string
@@ -77,4 +80,39 @@ export type Incident = {
 export type IncidentResponse = {
     incidents: Incident[]
     count: number
+}
+
+export type inputContainer = {
+    title: string
+    htmlFor: string
+    children: React.ReactNode
+}
+
+export interface SignCanvasProps {
+    setSignature: (signature: string | null) => void
+    signaturePadRef: RefObject<SignaturePad>
+}
+
+export interface incidentSubmit {
+    intervention_moment: string
+    victim_id: string
+    injury_id: string
+    injury_description: string
+    injury_situation: string
+    location_id: string
+    care_id: string
+    samu: boolean
+    sst_id: string
+    sst_signature: string
+    samu_departure_time?: string
+    samu_destination?: string
+    samu_report?: string
+    employee_discharge?: string
+    transport_id: string
+    employee_departure_time?: string
+    employee_arrival_time?: string
+    notify_manager: boolean
+    willVictimeGoHome: boolean
+    created_at: string
+    updated_at: string
 }
