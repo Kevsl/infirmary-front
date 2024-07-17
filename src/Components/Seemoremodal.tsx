@@ -109,55 +109,84 @@ export default function BasicModal({ incident }: { incident: Incident }) {
                                         {incident.injury_situation}
                                     </p>
                                 </div>
+                                {incident.care.treatment && (
+                                    <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                                        <p className="text-gray-600">
+                                            Soins apportés
+                                        </p>
+                                        <p className="text-gray-600">
+                                            {incident.care.treatment}
+                                        </p>
+                                    </div>
+                                )}
+                                {incident.samu_report && (
+                                    <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                                        <p className="text-gray-600">
+                                            Décision du SAMU
+                                        </p>
+                                        <p className="text-gray-600">
+                                            {incident.samu_report}
+                                        </p>
+                                    </div>
+                                )}
+                                {incident.samu_departure_time && (
+                                    <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                                        <p className="text-gray-600">
+                                            Heure départ SAMU
+                                        </p>
+                                        <p className="text-gray-600">
+                                            {incident.samu_departure_time}
+                                        </p>
+                                    </div>
+                                )}
+                                {incident.employee_discharge && (
+                                    <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                                        <p className="text-gray-600">
+                                            Décharge salarié
+                                        </p>
+                                        {incident.employee_discharge && (
+                                            <img
+                                                src={
+                                                    incident.employee_discharge
+                                                }
+                                            />
+                                        )}
+                                    </div>
+                                )}
+                                {incident.employee_departure_time && (
+                                    <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                                        <p className="text-gray-600">
+                                            Heure départ salarié
+                                        </p>
+                                        <p className="text-gray-600">
+                                            {incident.employee_departure_time}
+                                        </p>
+                                    </div>
+                                )}
+                                {incident.employee_arrival_time && (
+                                    <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                                        <p className="text-gray-600">
+                                            Heure arrivée salarié
+                                        </p>
+                                        <p className="text-gray-600">
+                                            {incident.employee_arrival_time}
+                                        </p>
+                                    </div>
+                                )}
+
                                 <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                                    <p className="text-gray-600">Sst </p>
                                     <p className="text-gray-600">
-                                        Soins apportés
-                                    </p>
-                                    <p className="text-gray-600">
-                                        {incident.care.treatment}
+                                        {incident.sst.name}
                                     </p>
                                 </div>
+
                                 <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                                     <p className="text-gray-600">
-                                        Décision du SAMU
+                                        Signature sst{' '}
                                     </p>
                                     <p className="text-gray-600">
-                                        {incident.samu_report}
-                                    </p>
-                                </div>
-                                <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
-                                    <p className="text-gray-600">
-                                        Heure départ SAMU
-                                    </p>
-                                    <p className="text-gray-600">
-                                        {incident.samu_departure_time}
-                                    </p>
-                                </div>
-                                <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
-                                    <p className="text-gray-600">
-                                        Décharge salarié
-                                    </p>
-                                    {incident.employee_discharge && (
-                                        <img
-                                            src={incident.employee_discharge}
-                                            // alt={incident.sst.name}
-                                        />
-                                    )}
-                                </div>
-                                <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
-                                    <p className="text-gray-600">
-                                        Heure départ salarié
-                                    </p>
-                                    <p className="text-gray-600">
-                                        {incident.employee_departure_time}
-                                    </p>
-                                </div>
-                                <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
-                                    <p className="text-gray-600">
-                                        Heure arrivée salarié
-                                    </p>
-                                    <p className="text-gray-600">
-                                        {incident.employee_arrival_time}
+                                        <img src={incident.sst_signature} />
                                     </p>
                                 </div>
                             </div>
