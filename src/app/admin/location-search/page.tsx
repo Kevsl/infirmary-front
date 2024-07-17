@@ -6,10 +6,8 @@ import BasicModal from '@/Components/Seemoremodal'
 import {
     getAllIncidents,
     getIncidentsByLocation,
-    getIncidentsByStaff,
 } from '@/Service/incident.service'
 import { getAllLocations } from '@/Service/location.service'
-import { getAllStaff } from '@/Service/users.service'
 import { Incident, Location, Victim } from '@/Utils/types'
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import React, { useEffect, useState } from 'react'

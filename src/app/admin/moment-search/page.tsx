@@ -3,12 +3,11 @@ import { AdminMenu } from '@/Components/AdminMenu'
 import Datagrid from '@/Components/Datagrid'
 import { InputContainer } from '@/Components/InputContainer'
 import BasicModal from '@/Components/Seemoremodal'
-import { getAllMoments } from '@/Service/incident.service'
 import {
     getAllIncidents,
     getIncidentsByMoment,
 } from '@/Service/incident.service'
-import { Incident, Moment } from '@/Utils/types'
+import { Incident } from '@/Utils/types'
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import React, { useEffect, useState } from 'react'
 

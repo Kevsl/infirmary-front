@@ -3,13 +3,8 @@ import { AdminMenu } from '@/Components/AdminMenu'
 import Datagrid from '@/Components/Datagrid'
 import { InputContainer } from '@/Components/InputContainer'
 import BasicModal from '@/Components/Seemoremodal'
-import {
-    getAllIncidents,
-    getIncidentsByLocation,
-    searchIncident,
-} from '@/Service/incident.service'
-import { getAllLocations } from '@/Service/location.service'
-import { Incident, Location } from '@/Utils/types'
+import { getAllIncidents, searchIncident } from '@/Service/incident.service'
+import { Incident } from '@/Utils/types'
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import React, { useEffect, useState } from 'react'
 
