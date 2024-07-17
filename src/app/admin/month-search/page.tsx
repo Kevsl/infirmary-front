@@ -98,9 +98,9 @@ const page = () => {
     }, [year, month])
 
     return (
-        <main className="flex items-center">
+        <main className="flex">
             <AdminMenu />
-            <div className="flex min-h-screen flex-col justify-center px-6 lg:px-8 bg-white w-screen">
+            <div className="flex min-h-screen flex-col pt-8 px-6 lg:px-8 bg-white w-screen">
                 <InputContainer title="Mois" htmlFor="month">
                     <div className="flex items-center">
                         <select

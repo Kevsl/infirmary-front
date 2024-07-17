@@ -1,13 +1,15 @@
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import React from 'react'
 import { CiCalendar } from 'react-icons/ci'
 import { FaMagnifyingGlass, FaUserInjured } from 'react-icons/fa6'
 import { IoMdTimer } from 'react-icons/io'
-import { IoTimeOutline } from 'react-icons/io5'
+import { IoPlaySharp, IoTimeOutline } from 'react-icons/io5'
 import { MdLocationPin, MdOutlineBloodtype } from 'react-icons/md'
 
 export const AdminMenu = () => {
     const { push } = useRouter()
+    const pathname = usePathname()
+    console.log(pathname)
 
     return (
         <div className="bg-gray-100 text-black static w-1/3">
@@ -24,6 +26,11 @@ export const AdminMenu = () => {
                 >
                     <FaMagnifyingGlass size={23} />
                     <span className="ml-2"> Recherche globale </span>
+                    {pathname === '/admin/global-search' && (
+                        <span className="ml-auto mr-8">
+                            <IoPlaySharp />
+                        </span>
+                    )}
                 </li>
                 <li
                     className="h-12 flex items-center my-2 hover:bg-blue-950 hover:text-white p-2 cursor-pointer"
@@ -31,6 +38,11 @@ export const AdminMenu = () => {
                 >
                     <MdOutlineBloodtype size={23} />
                     <span className="ml-2"> Type de blessure </span>
+                    {pathname === '/admin/injury-type-search' && (
+                        <span className="ml-auto mr-8">
+                            <IoPlaySharp />
+                        </span>
+                    )}
                 </li>
                 <li
                     className="h-12 flex items-center my-2 hover:bg-blue-950 hover:text-white p-2 cursor-pointer"
@@ -38,6 +50,9 @@ export const AdminMenu = () => {
                 >
                     <MdLocationPin size={23} />
                     <span className="ml-2"> Lieu d'incidents</span>
+                    {pathname === '/admin/location-search' && (
+                        <span className="ml-auto mr-8"></span>
+                    )}
                 </li>
                 <li
                     className="h-12 flex items-center my-2 hover:bg-blue-950 hover:text-white p-2 cursor-pointer"
@@ -45,6 +60,11 @@ export const AdminMenu = () => {
                 >
                     <IoTimeOutline size={23} />
                     <span className="ml-2"> Moment d'incidents</span>
+                    {pathname === '/admin/moment-search' && (
+                        <span className="ml-auto mr-8">
+                            <IoPlaySharp />
+                        </span>
+                    )}
                 </li>
                 <li
                     className="h-12 flex items-center my-2 hover:bg-blue-950 hover:text-white p-2 cursor-pointer"
@@ -52,6 +72,11 @@ export const AdminMenu = () => {
                 >
                     <CiCalendar size={23} />
                     <span className="ml-2"> Incidents par mois</span>
+                    {pathname === '/admin/month-search' && (
+                        <span className="ml-auto mr-8">
+                            <IoPlaySharp />
+                        </span>
+                    )}
                 </li>
                 <li
                     className="h-12 flex items-center my-2 hover:bg-blue-950 hover:text-white p-2 cursor-pointer"
@@ -59,6 +84,11 @@ export const AdminMenu = () => {
                 >
                     <FaUserInjured size={23} />
                     <span className="ml-2"> Incidents par personne</span>
+                    {pathname === '/admin/staff-search' && (
+                        <span className="ml-auto mr-8">
+                            <IoPlaySharp />
+                        </span>
+                    )}
                 </li>
             </ul>
         </div>
