@@ -161,3 +161,16 @@ export async function getIncidentStatsByLocation() {
         axiosConfig
     )
 }
+export async function getIncidentStatsByMoments() {
+    let axiosConfig = {
+        headers: {
+            'content-type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('sub')}`,
+        },
+    }
+
+    return axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}incident/stats/moments`,
+        axiosConfig
+    )
+}

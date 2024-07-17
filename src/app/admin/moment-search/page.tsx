@@ -6,8 +6,10 @@ import BasicModal from '@/Components/Seemoremodal'
 import {
     getAllIncidents,
     getIncidentsByMoment,
+    getIncidentStatsByMoments,
 } from '@/Service/incident.service'
 import { Incident } from '@/Utils/types'
+import { PieChart } from '@mui/x-charts'
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import React, { useEffect, useState } from 'react'
 
@@ -15,6 +17,7 @@ const page = () => {
     const momentList = ['Matin', 'Après-Midi', 'Nuit']
     const [momentId, setMomentId] = useState<string>('')
     const [incidentsList, setIncidentsList] = useState<Incident[]>([])
+    const [incidentsCount, setIncidentsCount] = useState([0])
 
     const columns: GridColDef[] = [
         {
@@ -96,11 +99,15 @@ const page = () => {
                     setIncidentsList(res.data.incidents)
                 })
                 .catch((e) => console.log(e))
+
+            getIncidentStatsByMoments().then((res) => {
+                setIncidentsCount(res.data)
+            })
         }
     }, [momentId])
 
     return (
-        <main className="flex items-center">
+        <main className="flex">
             <AdminMenu />
             <div className="flex min-h-screen flex-col justify-center px-6 lg:px-8 bg-white w-screen">
                 <InputContainer
@@ -126,6 +133,36 @@ const page = () => {
                 {incidentsList && (
                     <Datagrid rows={incidentsList} columns={columns} />
                 )}
+                <h2 className="text-center text-3xl text-black font-bold my-8">
+                    Statistique par lieux
+                </h2>
+                <div className="w-55 mx-auto">
+                    <PieChart
+                        series={[
+                            {
+                                data: [
+                                    {
+                                        id: 0,
+                                        value: incidentsCount[0],
+                                        label: 'Matin',
+                                    },
+                                    {
+                                        id: 1,
+                                        value: incidentsCount[1],
+                                        label: 'Après-midi',
+                                    },
+                                    {
+                                        id: 2,
+                                        value: incidentsCount[2],
+                                        label: 'Nuit',
+                                    },
+                                ],
+                            },
+                        ]}
+                        width={400}
+                        height={200}
+                    />
+                </div>
             </div>
         </main>
     )
