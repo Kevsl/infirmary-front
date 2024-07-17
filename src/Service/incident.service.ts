@@ -157,7 +157,7 @@ export async function getIncidentStatsByLocation() {
     }
 
     return axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}incident/stats/location`,
+        `${process.env.NEXT_PUBLIC_API_URL}incident/stats/locations`,
         axiosConfig
     )
 }

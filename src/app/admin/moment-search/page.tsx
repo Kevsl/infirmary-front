@@ -136,7 +136,7 @@ const page = () => {
                 <h2 className="text-center text-3xl text-black font-bold my-8">
                     Statistique par lieux
                 </h2>
-                <div className="w-55 mx-auto">
+                <div className="w-55 mx-auto mb-16">
                     <PieChart
                         series={[
                             {
