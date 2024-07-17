@@ -10,7 +10,7 @@ export const AdminMenu = () => {
     const { push } = useRouter()
 
     return (
-        <div className="bg-gray-100 text-black static h-screen w-1/3">
+        <div className="bg-gray-100 text-black static w-1/3">
             <img
                 src="/banniere-mithieux.svg"
                 alt="Bannière Mithieux"

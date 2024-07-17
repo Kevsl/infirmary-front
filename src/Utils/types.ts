@@ -116,3 +116,9 @@ export interface incidentSubmit {
     created_at: string
     updated_at: string
 }
+
+export type IncidentStatProps = {
+    location: string
+    locationId: string
+    count: number
+}

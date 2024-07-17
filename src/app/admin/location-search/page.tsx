@@ -6,17 +6,24 @@ import BasicModal from '@/Components/Seemoremodal'
 import {
     getAllIncidents,
     getIncidentsByLocation,
+    getIncidentStatsByLocation,
 } from '@/Service/incident.service'
 import { getAllLocations } from '@/Service/location.service'
-import { Incident, Location, Victim } from '@/Utils/types'
+import { Incident, IncidentStatProps, Location, Victim } from '@/Utils/types'
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import React, { useEffect, useState } from 'react'
+import { BarChart } from '@mui/x-charts/BarChart'
 
 const page = () => {
     const [locationsList, setLocationsList] = useState<Location[]>()
     const [locationId, setLocationId] = useState<string>('')
     const [incidentsList, setIncidentsList] = useState<Incident[]>([])
-
+    const [incidentsStats, setincidentsStats] = useState<IncidentStatProps[]>(
+        []
+    )
+    const [incidentsLabel, setIncidentsLabel] = useState([''])
+    const [incidentsCount, setIncidentsCount] = useState([0])
+    const [isLoading, setIsLoading] = useState(false)
     const columns: GridColDef[] = [
         {
             field: 'incident_date',
@@ -87,8 +94,24 @@ const page = () => {
     ]
 
     useEffect(() => {
+        setIsLoading(true)
         getAllLocations().then((res) => {
             setLocationsList(res.data)
+        })
+
+        getIncidentStatsByLocation().then((res) => {
+            setincidentsStats(res.data)
+            let incLabels = ['']
+            let incCounts = [0]
+
+            res.data.map((stat: IncidentStatProps) => {
+                incLabels.push(stat.location)
+                incCounts.push(stat.count)
+                setIsLoading(false)
+            })
+
+            setIncidentsLabel(incLabels)
+            setIncidentsCount(incCounts)
         })
     }, [])
 
@@ -105,8 +128,9 @@ const page = () => {
     }, [locationId])
 
     return (
-        <main className="flex items-center">
+        <main className="flex">
             <AdminMenu />
+
             <div className="flex min-h-screen flex-col justify-center px-6 lg:px-8 bg-white w-screen">
                 <InputContainer title="Lieux" htmlFor="concernedStaff">
                     <select
@@ -131,6 +155,22 @@ const page = () => {
                 {incidentsList && (
                     <Datagrid rows={incidentsList} columns={columns} />
                 )}
+                <h2 className="text-center text-3xl text-black font-bold mt-8">
+                    Statistique par lieux
+                </h2>
+                <div className="w-55 mx-auto">
+                    <BarChart
+                        xAxis={[
+                            {
+                                scaleType: 'band',
+                                data: incidentsLabel,
+                            },
+                        ]}
+                        series={[{ data: incidentsCount }]}
+                        width={900}
+                        height={300}
+                    />
+                </div>
             </div>
         </main>
     )
