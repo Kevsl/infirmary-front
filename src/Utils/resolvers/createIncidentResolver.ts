@@ -12,6 +12,14 @@ export const createIncidentResolver: Resolver<incidentSubmit> = async (
             message: 'Qui est la victime ?',
         }
     }
+    if (values.victim_id) {
+        if (values.victim_id === values.sst_id) {
+            errors.isVictimSst = {
+                type: 'required',
+                message: 'Le SST ne peut pas se traiter lui-même !',
+            }
+        }
+    }
     if (!values.injury_id) {
         errors.injury_id = {
             type: 'required',

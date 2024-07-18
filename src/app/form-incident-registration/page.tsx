@@ -120,7 +120,7 @@ const page = () => {
 
                 <div className="my-10 sm:mx-auto sm:w-full sm:max-w-xl border-2 border-gray-100 p-2 rounded-md">
                     <InputContainer
-                        title="Salarié concerné(e)"
+                        title="Salarié(e) concerné(e)"
                         htmlFor="concernedStaff"
                     >
                         <select
@@ -254,7 +254,7 @@ const page = () => {
                             <FormError message={errors.care_id.message} />
                         )}
                     </InputContainer>
-                    <InputContainer title="Sst" htmlFor="sst">
+                    <InputContainer title="SST" htmlFor="sst">
                         <select
                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 indent:3 pl-3"
                             {...register('sst_id')}
@@ -352,7 +352,6 @@ const page = () => {
                             <FormError message={errors.sst_signature.message} />
                         )}
                     </InputContainer>
-
                     <div className="my-3 flex items-center">
                         <label
                             htmlFor="willVictimGoHome"
@@ -458,7 +457,6 @@ const page = () => {
                             </InputContainer>
                         </div>
                     )}
-
                     <div className="my-4 flex items-center">
                         <label
                             htmlFor="isEmailNeeded"
@@ -474,7 +472,9 @@ const page = () => {
                             />
                         </div>
                     </div>
-
+                    {errors.isVictimSst?.message && (
+                        <FormError message={errors.isVictimSst.message} />
+                    )}{' '}
                     <div className="my-3">
                         <input
                             type="submit"
