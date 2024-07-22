@@ -17,6 +17,7 @@ import {
     Transport,
     Victim,
 } from '@/Utils/types'
+import { Checkbox, FormControlLabel, FormGroup } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -37,6 +38,21 @@ const page = () => {
     const [victimSignature, setVictimSignature] = useState<string | null>(null)
     const victimSignaturePadRef = useRef<SignaturePad>(null)
     const { push } = useRouter()
+    const [careIds, setCareIds] = useState<string[]>([])
+
+    useEffect(() => {
+        setValue('care_ids', careIds)
+    }, [careIds])
+
+    const handleCheckboxChange = (event: any) => {
+        const { value, checked } = event.target
+        setCareIds((prevCareIds) =>
+            checked
+                ? [...prevCareIds, value]
+                : prevCareIds.filter((id) => id !== value)
+        )
+    }
+
     const {
         register,
         handleSubmit,
@@ -236,23 +252,21 @@ const page = () => {
                         title="Soin apporté au salarié"
                         htmlFor="careType"
                     >
-                        <select
-                            {...register('care_id')}
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 indent:3 "
-                        >
-                            <option></option>
-                            {caresList &&
-                                caresList.map((care) => {
-                                    return (
-                                        <option key={care.id} value={care.id}>
-                                            {care.treatment}
-                                        </option>
-                                    )
-                                })}
-                        </select>
-                        {errors.care_id?.message && (
-                            <FormError message={errors.care_id.message} />
-                        )}
+                        <FormGroup>
+                            {caresList?.map((care) => (
+                                <FormControlLabel
+                                    key={care.id}
+                                    control={
+                                        <Checkbox
+                                            value={care.id}
+                                            onChange={handleCheckboxChange}
+                                        />
+                                    }
+                                    label={care.treatment}
+                                    className={'text-black'}
+                                />
+                            ))}
+                        </FormGroup>
                     </InputContainer>
                     <InputContainer title="SST" htmlFor="sst">
                         <select

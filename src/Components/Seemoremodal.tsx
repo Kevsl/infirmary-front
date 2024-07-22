@@ -109,13 +109,27 @@ export default function BasicModal({ incident }: { incident: Incident }) {
                                         {incident.injury_situation}
                                     </p>
                                 </div>
-                                {incident.care.treatment && (
+                                {incident.incidentHasCare.length > 0 && (
                                     <div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                                         <p className="text-gray-600">
                                             Soins apportés
                                         </p>
                                         <p className="text-gray-600">
-                                            {incident.care.treatment}
+                                            {incident.incidentHasCare &&
+                                                incident.incidentHasCare
+                                                    .length > 0 &&
+                                                incident.incidentHasCare.map(
+                                                    (element) => {
+                                                        return (
+                                                            <span className="text-gray-600 block my-2">
+                                                                {
+                                                                    element.care
+                                                                        .treatment
+                                                                }
+                                                            </span>
+                                                        )
+                                                    }
+                                                )}
                                         </p>
                                     </div>
                                 )}
