@@ -139,6 +139,13 @@ export type InsertOrUpdateStaffProps = {
     stillEmployed: boolean
 }
 
+export type SignUpProps = {
+    firstName: string
+    lastName: string
+    email: string
+    password: string
+}
+
 export type HandleCloseType = () => void
 
 export type BackOfficeLocationFormProps = {

@@ -112,7 +112,6 @@ const page = () => {
         <main className="flex">
             <AdminMenu />
             <LoginButton />
-            <LogoutButton />
             <div className="flex min-h-screen flex-col pt-8 px-6 lg:px-8 bg-white w-screen">
                 <InputContainer
                     title="Type de blessures"
