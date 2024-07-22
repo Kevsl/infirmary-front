@@ -56,7 +56,7 @@ export type Incident = {
     injury_description: string
     injury_situation: string
     location_id: string
-    care_id: string
+    incidentHasCare: IncidentHasCare
     samu: boolean
     sst_id: string
     sst_signature: string
@@ -100,7 +100,7 @@ export interface incidentSubmit {
     injury_description: string
     injury_situation: string
     location_id: string
-    care_id: string
+    care_ids: string[]
     samu: boolean
     sst_id: string
     sst_signature: string
@@ -123,6 +123,16 @@ export type IncidentStatProps = {
     locationId: string
     count: number
 }
+
+export type IncidentHasCare = [
+    {
+        id: string
+        care_id: string
+        incident_id: string
+        care: Care
+        incident: Incident
+    }
+]
 export type InsertOrUpdateStaffProps = {
     name: string
     sst_status: boolean

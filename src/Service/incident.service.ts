@@ -117,7 +117,7 @@ export async function reportIncident(incident: incidentSubmit) {
             injury_description: incident.injury_description,
             injury_situation: incident.injury_situation,
             location_id: incident.location_id,
-            care_id: incident.care_id,
+            care_ids: incident.care_ids,
             samu: incident.samu || false,
             sst_id: incident.sst_id,
             sst_signature: incident.sst_signature,
