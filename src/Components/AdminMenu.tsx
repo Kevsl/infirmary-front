@@ -3,13 +3,12 @@ import React from 'react'
 import { CiCalendar } from 'react-icons/ci'
 import { FaMagnifyingGlass, FaUserInjured } from 'react-icons/fa6'
 import { IoMdTimer } from 'react-icons/io'
-import { IoPlaySharp, IoTimeOutline } from 'react-icons/io5'
+import { IoPlaySharp, IoSettingsSharp, IoTimeOutline } from 'react-icons/io5'
 import { MdLocationPin, MdOutlineBloodtype } from 'react-icons/md'
 
 export const AdminMenu = () => {
     const { push } = useRouter()
     const pathname = usePathname()
-    console.log(pathname)
 
     return (
         <div className="bg-gray-100 text-black static w-1/3">
@@ -85,6 +84,18 @@ export const AdminMenu = () => {
                     <FaUserInjured size={23} />
                     <span className="ml-2"> Incidents par personne</span>
                     {pathname === '/admin/staff-search' && (
+                        <span className="ml-auto mr-8">
+                            <IoPlaySharp />
+                        </span>
+                    )}
+                </li>
+                <li
+                    className="h-12 flex items-center my-2 hover:bg-blue-950 hover:text-white p-2 cursor-pointer"
+                    onClick={() => push('/admin/back-office')}
+                >
+                    <IoSettingsSharp size={23} />
+                    <span className="ml-2"> Back office</span>
+                    {pathname === '/admin/back-office' && (
                         <span className="ml-auto mr-8">
                             <IoPlaySharp />
                         </span>

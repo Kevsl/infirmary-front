@@ -133,3 +133,21 @@ export type IncidentHasCare = [
         incident: Incident
     }
 ]
+export type InsertOrUpdateStaffProps = {
+    name: string
+    sst_status: boolean
+    stillEmployed: boolean
+}
+
+export type HandleCloseType = () => void
+
+export type BackOfficeLocationFormProps = {
+    handleClose: HandleCloseType
+}
+
+export type BackOfficeInjuryFormProps = {
+    handleClose: HandleCloseType
+}
+export type BackOfficeStaffFormProps = {
+    handleClose: HandleCloseType
+}
