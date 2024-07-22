@@ -16,6 +16,9 @@ const config: Config = {
             margin: {
                 55: '55%',
             },
+            colors: {
+                lightGrayBg: '#f1f5f9',
+            },
         },
     },
     plugins: [],
