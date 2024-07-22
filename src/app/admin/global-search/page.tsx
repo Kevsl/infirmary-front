@@ -2,11 +2,13 @@
 import { AdminMenu } from '@/Components/AdminMenu'
 import Datagrid from '@/Components/Datagrid'
 import { InputContainer } from '@/Components/InputContainer'
+import { LoginButton } from '@/Components/Connexion/LoginButton'
 import BasicModal from '@/Components/Seemoremodal'
 import { getAllIncidents, searchIncident } from '@/Service/incident.service'
 import { Incident } from '@/Utils/types'
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import React, { useEffect, useState } from 'react'
+import { LogoutButton } from '@/Components/Connexion/LogoutButton'
 
 const page = () => {
     const [query, setQuery] = useState<string>('')
@@ -96,6 +98,8 @@ const page = () => {
     return (
         <main className="flex">
             <AdminMenu />
+            <LoginButton />
+            <LogoutButton />
             <div className="flex min-h-screen flex-col pt-8  px-6 lg:px-8 bg-white w-screen">
                 <InputContainer
                     title="Recherche globale"

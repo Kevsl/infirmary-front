@@ -51,7 +51,9 @@ export const AdminMenu = () => {
                     <MdLocationPin size={23} />
                     <span className="ml-2"> Lieu d'incidents</span>
                     {pathname === '/admin/location-search' && (
-                        <span className="ml-auto mr-8"></span>
+                        <span className="ml-auto mr-8">
+                            <IoPlaySharp />
+                        </span>
                     )}
                 </li>
                 <li

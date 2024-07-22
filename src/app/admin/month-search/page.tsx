@@ -9,6 +9,8 @@ import { Incident } from '@/Utils/types'
 import { generateYearsList } from '@/Utils/yearList'
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import React, { useEffect, useState } from 'react'
+import { LoginButton } from '@/Components/Connexion/LoginButton'
+import { LogoutButton } from '@/Components/Connexion/LogoutButton'
 
 const page = () => {
     const [month, setMonth] = useState<number>(0)
@@ -100,6 +102,8 @@ const page = () => {
     return (
         <main className="flex">
             <AdminMenu />
+            <LoginButton />
+            <LogoutButton />
             <div className="flex min-h-screen flex-col pt-8 px-6 lg:px-8 bg-white w-screen">
                 <InputContainer title="Mois" htmlFor="month">
                     <div className="flex items-center">

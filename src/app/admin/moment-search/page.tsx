@@ -12,6 +12,8 @@ import { Incident } from '@/Utils/types'
 import { PieChart } from '@mui/x-charts'
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import React, { useEffect, useState } from 'react'
+import { LoginButton } from '@/Components/Connexion/LoginButton'
+import { LogoutButton } from '@/Components/Connexion/LogoutButton'
 
 const page = () => {
     const momentList = ['Matin', 'Après-Midi', 'Nuit']
@@ -109,6 +111,8 @@ const page = () => {
     return (
         <main className="flex">
             <AdminMenu />
+            <LoginButton />
+            <LogoutButton />
             <div className="flex min-h-screen flex-col pt-8 px-6 lg:px-8 bg-white w-screen">
                 <InputContainer
                     title="Incidents par équipe"
