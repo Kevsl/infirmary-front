@@ -115,6 +115,7 @@ export interface incidentSubmit {
     willVictimeGoHome: boolean
     created_at: string
     updated_at: string
+    isVictimSst: string
 }
 
 export type IncidentStatProps = {
