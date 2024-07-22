@@ -41,7 +41,8 @@ export const createIncidentResolver: Resolver<incidentSubmit> = async (
     if (!values.sst_signature) {
         errors.sst_signature = {
             type: 'required',
-            message: 'La signature du sst est obligatoire.',
+            message:
+                'La signature du sst est obligatoire, pensez à sauvegarder.',
         }
     }
     if (!values.injury_situation) {
@@ -56,8 +57,8 @@ export const createIncidentResolver: Resolver<incidentSubmit> = async (
             message: "Ou l'accident s'est il produit?",
         }
     }
-    if (!values.care_id) {
-        errors.care_id = {
+    if (!values.care_ids) {
+        errors.care_ids = {
             type: 'required',
             message: 'Quel type de soins ont été apportés ?',
         }
@@ -95,7 +96,8 @@ export const createIncidentResolver: Resolver<incidentSubmit> = async (
         if (!values.employee_discharge) {
             errors.employee_discharge = {
                 type: 'required',
-                message: 'La signature du salarié est requise',
+                message:
+                    'La signature du salarié est requise, pensez à sauvegarder',
             }
         }
         if (!values.transport_id) {
