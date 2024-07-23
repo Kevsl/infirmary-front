@@ -1,6 +1,6 @@
 'use client'
 import { AdminMenu } from '@/Components/AdminMenu'
-import { CareStats } from '@/Components/BackOffice/Stats/CareStats'
+import { CareStats } from '@/Components/BackOffice/Stats/Care/CareStats'
 import { StatFilterLabels, StatFilterOptions } from '@/Utils/types'
 import React, { useState } from 'react'
 
@@ -17,27 +17,28 @@ const page = () => {
                     >
                         Sujet
                     </label>
-                    <div className="mt-2"></div>
-                    <select
-                        className="block w-full sm:w-1/2 md:w-1/3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 indent:3 pl-3"
-                        onChange={(e) => setFilter(e.target.value)}
-                    >
-                        <option value={StatFilterOptions.Care}>
-                            {StatFilterLabels.Care}
-                        </option>
-                        <option value={StatFilterOptions.Location}>
-                            {StatFilterLabels.Location}
-                        </option>
-                        <option value={StatFilterOptions.Injury}>
-                            {StatFilterLabels.Injury}
-                        </option>
-                        <option value={StatFilterOptions.Staff}>
-                            {StatFilterLabels.Staff}
-                        </option>
-                        <option value={StatFilterOptions.Moment}>
-                            {StatFilterLabels.Moment}
-                        </option>
-                    </select>
+                    <div className="mt-2">
+                        <select
+                            className="block w-full sm:w-1/2 md:w-1/3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 indent:3 pl-3"
+                            onChange={(e) => setFilter(e.target.value)}
+                        >
+                            <option value={StatFilterOptions.Care}>
+                                {StatFilterLabels.Care}
+                            </option>
+                            <option value={StatFilterOptions.Location}>
+                                {StatFilterLabels.Location}
+                            </option>
+                            <option value={StatFilterOptions.Injury}>
+                                {StatFilterLabels.Injury}
+                            </option>
+                            <option value={StatFilterOptions.Staff}>
+                                {StatFilterLabels.Staff}
+                            </option>
+                            <option value={StatFilterOptions.Moment}>
+                                {StatFilterLabels.Moment}
+                            </option>
+                        </select>
+                    </div>
                 </div>
                 {filter === StatFilterOptions.Care ? <CareStats /> : <p></p>}
             </div>

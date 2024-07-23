@@ -1,5 +1,5 @@
 import { getTimeOfDay } from '@/Utils/timeToMomentConverter'
-import { incidentSubmit } from '@/Utils/types'
+import { IncidentDate, incidentSubmit } from '@/Utils/types'
 import axios from 'axios'
 
 export async function getAllIncidents() {
@@ -134,6 +134,7 @@ export async function reportIncident(incident: incidentSubmit) {
         axiosConfig
     )
 }
+
 export async function searchIncident(query: string) {
     let axiosConfig = {
         headers: {
@@ -161,6 +162,7 @@ export async function getIncidentStatsByLocation() {
         axiosConfig
     )
 }
+
 export async function getIncidentStatsByMoments() {
     let axiosConfig = {
         headers: {
@@ -171,6 +173,26 @@ export async function getIncidentStatsByMoments() {
 
     return axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}incident/stats/moments`,
+        axiosConfig
+    )
+}
+
+export async function getCareIncidentStats(incidentDates: IncidentDate) {
+    let axiosConfig = {
+        headers: {
+            'content-type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('sub')}`,
+        },
+    }
+
+    return axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}incident/stats/care`,
+        {
+            startMonth: Number(incidentDates.startMonth),
+            startYear: Number(incidentDates.startYear),
+            endMonth: Number(incidentDates.endMonth),
+            endYear: Number(incidentDates.endYear),
+        },
         axiosConfig
     )
 }
