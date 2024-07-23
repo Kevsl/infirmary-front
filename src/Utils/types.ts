@@ -151,3 +151,18 @@ export type BackOfficeInjuryFormProps = {
 export type BackOfficeStaffFormProps = {
     handleClose: HandleCloseType
 }
+
+export enum StatFilterOptions {
+    Care = 'care',
+    Location = 'location',
+    Injury = 'injury',
+    Staff = 'staff',
+    Moment = 'moment',
+}
+export enum StatFilterLabels {
+    Care = 'Soins apportés',
+    Location = 'Secteur',
+    Injury = 'Type de blessure',
+    Staff = 'Personne',
+    Moment = 'Moment',
+}

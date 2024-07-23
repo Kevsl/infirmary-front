@@ -3,7 +3,12 @@ import React from 'react'
 import { CiCalendar } from 'react-icons/ci'
 import { FaMagnifyingGlass, FaUserInjured } from 'react-icons/fa6'
 import { IoMdTimer } from 'react-icons/io'
-import { IoPlaySharp, IoSettingsSharp, IoTimeOutline } from 'react-icons/io5'
+import {
+    IoPlaySharp,
+    IoSettingsSharp,
+    IoStatsChart,
+    IoTimeOutline,
+} from 'react-icons/io5'
 import { MdLocationPin, MdOutlineBloodtype } from 'react-icons/md'
 
 export const AdminMenu = () => {
@@ -19,6 +24,18 @@ export const AdminMenu = () => {
                 onClick={() => push('/admin/global-search')}
             />
             <ul className="h-screen pl-1">
+                <li
+                    className="h-12 flex items-center my-2 hover:bg-blue-950 hover:text-white p-2 cursor-pointer"
+                    onClick={() => push('/admin')}
+                >
+                    <IoStatsChart size={23} />
+                    <span className="ml-2">Statistiques</span>
+                    {pathname === '/admin' && (
+                        <span className="ml-auto mr-8">
+                            <IoPlaySharp />
+                        </span>
+                    )}
+                </li>
                 <li
                     className="h-12 flex items-center my-2 hover:bg-blue-950 hover:text-white p-2 cursor-pointer"
                     onClick={() => push('/admin/global-search')}
