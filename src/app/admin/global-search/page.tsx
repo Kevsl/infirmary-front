@@ -8,7 +8,6 @@ import { getAllIncidents, searchIncident } from '@/Service/incident.service'
 import { Incident } from '@/Utils/types'
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import React, { useEffect, useState } from 'react'
-import { LogoutButton } from '@/Components/Connexion/LogoutButton'
 
 const page = () => {
     const [query, setQuery] = useState<string>('')

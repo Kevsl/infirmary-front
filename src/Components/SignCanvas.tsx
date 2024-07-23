@@ -1,5 +1,4 @@
 import { SignCanvasProps } from '@/Utils/types'
-import { RefObject, useEffect, useRef, useState } from 'react'
 import SignaturePad from 'react-signature-pad-wrapper'
 
 const SignCanvas: React.FC<SignCanvasProps> = ({

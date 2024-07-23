@@ -2,7 +2,6 @@
 import { AdminMenu } from '@/Components/AdminMenu'
 import React from 'react'
 import { LoginButton } from '@/Components/Connexion/LoginButton'
-import { LogoutButton } from '@/Components/Connexion/LogoutButton'
 
 const page = () => {
     return (

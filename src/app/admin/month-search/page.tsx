@@ -10,7 +10,6 @@ import { generateYearsList } from '@/Utils/yearList'
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import React, { useEffect, useState } from 'react'
 import { LoginButton } from '@/Components/Connexion/LoginButton'
-import { LogoutButton } from '@/Components/Connexion/LogoutButton'
 
 const page = () => {
     const [month, setMonth] = useState<number>(0)

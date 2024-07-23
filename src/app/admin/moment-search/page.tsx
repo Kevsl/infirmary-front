@@ -13,7 +13,6 @@ import { PieChart } from '@mui/x-charts'
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import React, { useEffect, useState } from 'react'
 import { LoginButton } from '@/Components/Connexion/LoginButton'
-import { LogoutButton } from '@/Components/Connexion/LogoutButton'
 
 const page = () => {
     const momentList = ['Matin', 'Après-Midi', 'Nuit']
