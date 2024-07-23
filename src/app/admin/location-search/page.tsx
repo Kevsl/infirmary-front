@@ -13,6 +13,7 @@ import { Incident, IncidentStatProps, Location, Victim } from '@/Utils/types'
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import React, { useEffect, useState } from 'react'
 import { BarChart } from '@mui/x-charts/BarChart'
+import { LoginButton } from '@/Components/Connexion/LoginButton'
 
 const page = () => {
     const [locationsList, setLocationsList] = useState<Location[]>()
@@ -130,7 +131,8 @@ const page = () => {
     return (
         <main className="flex">
             <AdminMenu />
-            <div className="flex min-h-screen flex-col pt-8  px-6 lg:px-8 bg-white w-screen">
+            <LoginButton />
+            <div className="flex min-h-screen flex-col pt-8 px-6 lg:px-8 bg-white w-screen">
                 <InputContainer title="Lieux" htmlFor="concernedStaff">
                     <select
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 indent:3 pl-3"
