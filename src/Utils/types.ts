@@ -158,7 +158,7 @@ export enum StatFilterOptions {
     Care = 'care',
     Location = 'location',
     Injury = 'injury',
-    Staff = 'staff',
+    Staff = 'user',
     Moment = 'moment',
 }
 
@@ -170,7 +170,7 @@ export enum StatFilterLabels {
     Moment = 'Moment',
 }
 
-export type IncidentDate = {
+export type IncidentDates = {
     startMonth: number
     startYear: number
     endMonth: number

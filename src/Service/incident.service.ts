@@ -1,5 +1,5 @@
 import { getTimeOfDay } from '@/Utils/timeToMomentConverter'
-import { IncidentDate, incidentSubmit } from '@/Utils/types'
+import { IncidentDates, incidentSubmit } from '@/Utils/types'
 import axios from 'axios'
 
 export async function getAllIncidents() {
@@ -149,7 +149,8 @@ export async function searchIncident(query: string) {
     )
 }
 
-export async function getIncidentStatsByLocation() {
+//
+export async function getIncidentStatsByLocation(incidentDates: IncidentDates) {
     let axiosConfig = {
         headers: {
             'content-type': 'application/json',
@@ -157,8 +158,14 @@ export async function getIncidentStatsByLocation() {
         },
     }
 
-    return axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}incident/stats/locations`,
+    return axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}incident/stats/location`,
+        {
+            startMonth: Number(incidentDates.startMonth),
+            startYear: Number(incidentDates.startYear),
+            endMonth: Number(incidentDates.endMonth),
+            endYear: Number(incidentDates.endYear),
+        },
         axiosConfig
     )
 }
@@ -177,7 +184,10 @@ export async function getIncidentStatsByMoments() {
     )
 }
 
-export async function getCareIncidentStats(incidentDates: IncidentDate) {
+export async function getIncidentStats(
+    incidentDates: IncidentDates,
+    filter: string
+) {
     let axiosConfig = {
         headers: {
             'content-type': 'application/json',
@@ -186,7 +196,7 @@ export async function getCareIncidentStats(incidentDates: IncidentDate) {
     }
 
     return axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}incident/stats/care`,
+        `${process.env.NEXT_PUBLIC_API_URL}incident/stats/${filter}`,
         {
             startMonth: Number(incidentDates.startMonth),
             startYear: Number(incidentDates.startYear),

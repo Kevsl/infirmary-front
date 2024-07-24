@@ -1,7 +1,7 @@
 import { Resolver } from 'react-hook-form'
-import { IncidentDate } from '../types'
+import { IncidentDates } from '../types'
 
-export const searchIncidentResolver: Resolver<IncidentDate> = async (
+export const searchIncidentResolver: Resolver<IncidentDates> = async (
     values
 ) => {
     const errors: Record<string, { type: string; message: string }> = {}

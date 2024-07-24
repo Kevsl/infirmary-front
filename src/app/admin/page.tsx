@@ -1,6 +1,6 @@
 'use client'
 import { AdminMenu } from '@/Components/AdminMenu'
-import { CareStats } from '@/Components/BackOffice/Stats/Care/CareStats'
+import { GraphStat } from '@/Components/BackOffice/Stats/Care/GraphStat'
 import { StatFilterLabels, StatFilterOptions } from '@/Utils/types'
 import React, { useState } from 'react'
 
@@ -40,7 +40,7 @@ const page = () => {
                         </select>
                     </div>
                 </div>
-                {filter === StatFilterOptions.Care ? <CareStats /> : <p></p>}
+                <GraphStat filter={filter} />
             </div>
         </main>
     )
