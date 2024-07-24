@@ -133,6 +133,7 @@ export type IncidentHasCare = [
         incident: Incident
     }
 ]
+
 export type InsertOrUpdateStaffProps = {
     name: string
     sst_status: boolean
@@ -155,6 +156,35 @@ export type BackOfficeLocationFormProps = {
 export type BackOfficeInjuryFormProps = {
     handleClose: HandleCloseType
 }
+
 export type BackOfficeStaffFormProps = {
     handleClose: HandleCloseType
+}
+
+export enum StatFilterOptions {
+    Care = 'care',
+    Location = 'location',
+    Injury = 'injury',
+    Staff = 'user',
+    Moment = 'moment',
+}
+
+export enum StatFilterLabels {
+    Care = 'Soins apportés',
+    Location = 'Secteur',
+    Injury = 'Type de blessure',
+    Staff = 'Personne',
+    Moment = 'Moment',
+}
+
+export type IncidentDates = {
+    startMonth: number
+    startYear: number
+    endMonth: number
+    endYear: number
+}
+
+export type SignInProps = {
+    email: string
+    password: string
 }
