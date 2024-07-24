@@ -183,3 +183,8 @@ export type IncidentDates = {
     endMonth: number
     endYear: number
 }
+
+export type SignInProps = {
+    email: string
+    password: string
+}
