@@ -10,11 +10,11 @@ export const LogoutButton = () => {
         let sub = localStorage.getItem('sub')
         if (!sub) {
             toast.error('Vous êtes déconnecté !', { id: 'login' })
-            push('/admin')
+            push('/admin/login')
         }
     } catch {
         toast.error('Vous êtes déconnecté !')
-        push('/admin')
+        push('/admin/login')
     }
 
     return (

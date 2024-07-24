@@ -25,7 +25,7 @@ export const AdminMenu = () => {
                     src="/banniere-mithieux.svg"
                     alt="Bannière Mithieux"
                     className="cursor-pointer"
-                    onClick={() => push('/admin/global-search')}
+                    onClick={() => push('/')}
                 />
                 <ul className="h-screen pl-1">
                     <li

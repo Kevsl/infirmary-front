@@ -27,8 +27,8 @@ const page = () => {
                 if (res.data.access_token) {
                     try {
                         localStorage.setItem('sub', res.data.access_token)
-                        toast.success('Enregistrement réussi')
-                        push('/')
+                        toast.success('Connexion réussie')
+                        push('/admin')
                     } catch {
                         toast.error('Problème avec vos identifiants')
                     }
