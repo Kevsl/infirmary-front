@@ -125,8 +125,7 @@ export async function reportIncident(incident: incidentSubmit) {
             samu_destination: incident.samu_destination || null,
             samu_report: incident.samu_report || null,
             employee_discharge: incident.employee_discharge || null,
-            transport_id:
-                incident.transport_id || '6b6d9c11-72f5-45ec-b115-23effc9e5a1b',
+            transport_id: incident.transport_id,
             employee_departure_time: incident.employee_departure_time || null,
             employee_arrival_time: incident.employee_arrival_time || null,
             notify_manager: incident.notify_manager || false,
