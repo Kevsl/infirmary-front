@@ -126,7 +126,7 @@ const page = () => {
                 <div className="sm:mx-auto sm:w-full sm:max-w-xl">
                     <img
                         alt="Mithieux metal protect"
-                        src="banniere-mithieux.svg"
+                        src="/banniere-mithieux.svg"
                         className="mx-auto w-full "
                     />
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">

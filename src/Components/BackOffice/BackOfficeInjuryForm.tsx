@@ -1,5 +1,4 @@
 import { createInjuryType } from '@/Service/injury.service'
-import { createLocation } from '@/Service/location.service'
 import { BackOfficeInjuryFormProps } from '@/Utils/types'
 
 import React, { useState } from 'react'

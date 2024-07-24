@@ -7,7 +7,7 @@ import React, { useState } from 'react'
 const page = () => {
     const [filter, setFilter] = useState(`${StatFilterOptions.Care}`)
     return (
-        <main className="flex">
+        <main className="flex relative">
             <AdminMenu />
             <div className="flex min-h-screen flex-col pt-8 px-6 lg:px-8 bg-white w-screen">
                 <div>

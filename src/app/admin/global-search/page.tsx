@@ -2,6 +2,7 @@
 import { AdminMenu } from '@/Components/AdminMenu'
 import Datagrid from '@/Components/Datagrid'
 import { InputContainer } from '@/Components/InputContainer'
+import { LoginButton } from '@/Components/Connexion/LoginButton'
 import BasicModal from '@/Components/Seemoremodal'
 import { getAllIncidents, searchIncident } from '@/Service/incident.service'
 import { Incident } from '@/Utils/types'
@@ -96,6 +97,7 @@ const page = () => {
     return (
         <main className="flex">
             <AdminMenu />
+            <LoginButton />
             <div className="flex min-h-screen flex-col pt-8  px-6 lg:px-8 bg-white w-screen">
                 <InputContainer
                     title="Recherche globale"
