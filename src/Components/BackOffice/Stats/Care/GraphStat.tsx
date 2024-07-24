@@ -169,7 +169,7 @@ export const GraphStat = ({ filter }: { filter: string }) => {
                     </button>
                 </div>
             </form>
-            <div className="w-1/2 mx-auto flex items-center justify-center">
+            <div className="w-full mx-auto my-8 flex items-center justify-center">
                 <BarChart
                     xAxis={[
                         {
@@ -178,7 +178,7 @@ export const GraphStat = ({ filter }: { filter: string }) => {
                         },
                     ]}
                     series={[{ data: count }]}
-                    width={900}
+                    width={1000}
                     height={500}
                 />
             </div>
