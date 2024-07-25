@@ -22,7 +22,7 @@ export const LogoutButton = () => {
             onClick={() => {
                 localStorage.removeItem('sub')
                 toast.error('Vous êtes déconnecté !', { id: 'login' })
-                push('/admin')
+                push('/admin/login')
             }}
             className="flex items-center justify-center py-2 px-1 border-blue-900 border-2 text-blue-900 rounded-md my-1 mx-auto w-16 absolute top-4 right-4"
         >

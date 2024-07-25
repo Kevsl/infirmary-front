@@ -14,7 +14,7 @@ export const BackOfficeInjuryForm: React.FC<BackOfficeInjuryFormProps> = ({
         if (name) {
             createInjuryType(name)
                 .then((res) => {
-                    toast.success('Enregistrement réussie')
+                    toast.success('Enregistrement réussi')
                     handleClose()
                 })
                 .catch((e) => toast.error("Erreur lors de l'enregistrement"))

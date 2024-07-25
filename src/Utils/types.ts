@@ -161,6 +161,10 @@ export type BackOfficeStaffFormProps = {
     handleClose: HandleCloseType
 }
 
+export type BackOfficeCareFormProps = {
+    handleClose: HandleCloseType
+}
+
 export enum StatFilterOptions {
     Care = 'care',
     Location = 'location',

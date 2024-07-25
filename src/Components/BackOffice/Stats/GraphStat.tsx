@@ -1,4 +1,4 @@
-import { FormError } from '@/Components/formError'
+import { FormError } from '@/Components/FormError'
 import { InputContainer } from '@/Components/InputContainer'
 import { getIncidentStats } from '@/Service/incident.service'
 import { monthesList } from '@/Utils/const'
