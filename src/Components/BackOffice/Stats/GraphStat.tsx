@@ -39,9 +39,11 @@ export const GraphStat = ({ filter }: { filter: string }) => {
         const caresIncidentLabels: string[] = []
         getIncidentStats(data, filter).then((res) => {
             res.data.map((element: any) => {
-                caresIncidentLabels.push(element.name)
-                caresIncidentCounts.push(element.count)
-                console.log(filter, res)
+                if (element.count > 0) {
+                    caresIncidentLabels.push(element.name)
+                    caresIncidentCounts.push(element.count)
+                    console.log(filter, res)
+                }
             })
             setLabels(caresIncidentLabels)
             setCount(caresIncidentCounts)
