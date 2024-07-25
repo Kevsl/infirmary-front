@@ -1,5 +1,5 @@
 'use client'
-import { FormError } from '@/Components/formError'
+import { FormError } from '@/Components/FormError'
 import { InputContainer } from '@/Components/InputContainer'
 import SignCanvas from '@/Components/SignCanvas'
 import { getAllCares } from '@/Service/care.service'

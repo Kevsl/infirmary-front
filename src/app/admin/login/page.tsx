@@ -1,5 +1,5 @@
 'use client'
-import { FormError } from '@/Components/formError'
+import { FormError } from '@/Components/FormError'
 import { signin } from '@/Service/auth.service'
 import { signInResolver } from '@/Utils/resolvers/signinresolver'
 import { SignInProps } from '@/Utils/types'

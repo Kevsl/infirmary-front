@@ -1,6 +1,6 @@
 'use client'
 import { AdminMenu } from '@/Components/AdminMenu'
-import { GraphStat } from '@/Components/BackOffice/Stats/Care/GraphStat'
+import { GraphStat } from '@/Components/BackOffice/Stats/GraphStat'
 import { StatFilterLabels, StatFilterOptions } from '@/Utils/types'
 import React, { useState } from 'react'
 

@@ -22,14 +22,14 @@ export const BackOfficeStaffForm: React.FC<BackOfficeStaffFormProps> = ({
             }
             createStaff(userData)
                 .then((res) => {
-                    toast.success('Salarié enregistré')
+                    toast.success('Salarié(e) enregistré(e)')
                     handleClose()
                 })
                 .catch((e) =>
-                    toast.error("Erreur lors de l'enregistrement du salarié")
+                    toast.error("Erreur lors de l'enregistrement du salarié(e)")
                 )
         } else {
-            setError('Veuillez entre le nom et prénom')
+            setError('Veuillez entrer le NOM et Prénom')
         }
     }
 
@@ -49,7 +49,7 @@ export const BackOfficeStaffForm: React.FC<BackOfficeStaffFormProps> = ({
                                 htmlFor="staffName"
                                 className="block text-sm font-medium leading-6 text-gray-900"
                             >
-                                Nom Prénom du salarié
+                                NOM Prénom du salarié(e)
                             </label>
                             <div className="mt-2">
                                 <input
@@ -69,17 +69,12 @@ export const BackOfficeStaffForm: React.FC<BackOfficeStaffFormProps> = ({
                                 {error}
                             </p>
                         </div>
-                        <div>
-                            <label
-                                htmlFor="isStaffSst"
-                                className="block text-sm font-medium leading-6 text-gray-900"
-                            >
-                                Le salarié est il SST ?
-                            </label>
-                            <div className="mt-2 flex items-center">
+                        <div className="flex">
+                            <div className="flex items-center">
                                 <input
                                     id="isStaffSst"
                                     name="isStaffSst"
+                                    className="align-middle"
                                     type="checkbox"
                                     autoComplete="isSst"
                                     onChange={() => {
@@ -87,6 +82,12 @@ export const BackOfficeStaffForm: React.FC<BackOfficeStaffFormProps> = ({
                                     }}
                                 />
                             </div>
+                            <label
+                                htmlFor="isStaffSst"
+                                className="block text-sm mx-2 align-middle font-medium leading-6 text-gray-900"
+                            >
+                                Le salarié est-il SST ?
+                            </label>
                             <p className="italic text-sm my-1 text-red-600">
                                 {error}
                             </p>
