@@ -124,11 +124,13 @@ const page = () => {
         <main className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-white w-screen">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="sm:mx-auto sm:w-full sm:max-w-xl">
-                    <img
-                        alt="Mithieux metal protect"
-                        src="/banniere-mithieux.svg"
-                        className="mx-auto w-full "
-                    />
+                    <a href="/">
+                        <img
+                            alt="Mithieux metal protect"
+                            src="/banniere-mithieux.svg"
+                            className="mx-auto w-full "
+                        />
+                    </a>
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                         Renseigner un incident
                     </h2>
