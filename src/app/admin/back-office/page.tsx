@@ -6,6 +6,7 @@ import { BackOfficeStaffModal } from '@/Components/BackOffice/BackOfficeStaffMod
 import { BackOfficeCareModal } from '@/Components/BackOffice/BackOfficeCareModal'
 
 import React from 'react'
+import { BackOfficeUpdateStaffModal } from '@/Components/BackOffice/BackOfficeUpdateStaffModal'
 
 const page = () => {
     return (
@@ -16,6 +17,7 @@ const page = () => {
                 <BackOfficeLocationModal title="Ajouter un secteur" />
                 <BackOfficeInjuryModal title="Ajouter un type de blessure" />
                 <BackOfficeCareModal title="Ajouter un type de soin" />
+                <BackOfficeUpdateStaffModal title="Modifier statut salarié" />
             </div>
         </main>
     )

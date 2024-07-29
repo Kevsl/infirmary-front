@@ -3,7 +3,7 @@ import Box from '@mui/material/Box'
 
 import Modal from '@mui/material/Modal'
 import { FaPlus } from 'react-icons/fa6'
-import { BackOfficeStaffForm } from './BackOfficeStaffForm'
+import { BackOfficeUpdateStaffForm } from './BackOfficeUpdateStaffForm'
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -17,7 +17,7 @@ const style = {
     p: 4,
     overflow: 'visible',
 }
-export const BackOfficeStaffModal = ({ title }: { title: string }) => {
+export const BackOfficeUpdateStaffModal = ({ title }: { title: string }) => {
     const [open, setOpen] = React.useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
@@ -40,7 +40,7 @@ export const BackOfficeStaffModal = ({ title }: { title: string }) => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <BackOfficeStaffForm handleClose={handleClose} />
+                    <BackOfficeUpdateStaffForm handleClose={handleClose} />
                 </Box>
             </Modal>
         </div>
