@@ -5,16 +5,30 @@ import { Incident } from '@/Utils/types'
 import { GridColDef, GridRenderCellParams, GridToolbar } from '@mui/x-data-grid'
 import { useEffect, useState } from 'react'
 import BasicModal from '@/Components/Seemoremodal'
-import { FaPlusCircle } from 'react-icons/fa'
+import { FaPlusCircle, FaUsersCog } from 'react-icons/fa'
 import { useRouter } from 'next/navigation'
+import { FaRegUser } from 'react-icons/fa6'
+import Link from 'next/link'
 
 export default function Home() {
     const [incidentsList, setIncidentsList] = useState<Incident[]>([])
+    const [isConnected, setIsConnected] = useState(false)
     const { push } = useRouter()
     useEffect(() => {
         getAllIncidents().then((res) => {
             setIncidentsList(res.data.incidents)
         })
+    }, [])
+
+    useEffect(() => {
+        try {
+            let token = window.localStorage.getItem('sub')
+            if (token) {
+                setIsConnected(true)
+            }
+        } catch {
+            console.log('error')
+        }
     }, [])
 
     const columns: GridColDef[] = [
@@ -86,7 +100,12 @@ export default function Home() {
         },
     ]
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-12 bg-white text-black">
+        <main className="flex min-h-screen flex-col items-center justify-between p-12 bg-white text-black relative">
+            <Link href="/admin/login" className="absolute top-8 right-8 ">
+                <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+                    <FaRegUser color="#fff" size={20} />
+                </div>
+            </Link>
             <h1 className="text-3xl font-bold">Registre infirmerie</h1>
             <button
                 onClick={() => push('/form-incident-registration')}
