@@ -179,7 +179,7 @@ export const GraphStat = ({ filter }: { filter: string }) => {
                             data: labels,
                         },
                     ]}
-                    series={[{ data: count }]}
+                    series={[{ data: count, color: '#FCA' }]}
                     width={1000}
                     height={500}
                 />
