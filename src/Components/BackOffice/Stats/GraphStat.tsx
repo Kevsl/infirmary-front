@@ -5,6 +5,7 @@ import { monthesList } from '@/Utils/const'
 import { searchIncidentResolver } from '@/Utils/resolvers/searchIncidentResolver'
 import { IncidentDates } from '@/Utils/types'
 import { generateYearsList } from '@/Utils/yearList'
+import { ChartContainer } from '@mui/x-charts'
 import { BarChart } from '@mui/x-charts/BarChart'
 import React, { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -15,6 +16,17 @@ export const GraphStat = ({ filter }: { filter: string }) => {
     const [labels, setLabels] = useState<string[]>([''])
     const [count, setCount] = useState<number[]>([0])
     const [isLoaded, setIsLoaded] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+
+    let chartWidth = 800
+
+    useEffect(() => {
+        try {
+            chartWidth = window.innerWidth / 2
+        } catch {
+            chartWidth = 800
+        }
+    }, [])
 
     const {
         register,
@@ -35,9 +47,12 @@ export const GraphStat = ({ filter }: { filter: string }) => {
     }, [isLoaded])
 
     const onSubmit: SubmitHandler<IncidentDates> = (data) => {
+        setIsLoading(true)
         const caresIncidentCounts: number[] = []
         const caresIncidentLabels: string[] = []
         getIncidentStats(data, filter).then((res) => {
+            setIsLoading(false)
+
             res.data.map((element: any) => {
                 if (element.count > 0) {
                     caresIncidentLabels.push(element.name)
@@ -171,18 +186,21 @@ export const GraphStat = ({ filter }: { filter: string }) => {
                     </button>
                 </div>
             </form>
+
             <div className="w-full mx-auto my-8 flex items-center justify-center">
-                <BarChart
-                    xAxis={[
-                        {
-                            scaleType: 'band',
-                            data: labels,
-                        },
-                    ]}
-                    series={[{ data: count, color: '#FCA' }]}
-                    width={1000}
-                    height={500}
-                />
+                {!isLoading && isLoaded && (
+                    <BarChart
+                        xAxis={[
+                            {
+                                scaleType: 'band',
+                                data: labels,
+                            },
+                        ]}
+                        series={[{ data: count, color: '#FCA' }]}
+                        width={chartWidth}
+                        height={400}
+                    />
+                )}
             </div>
         </div>
     )
